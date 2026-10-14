@@ -1,0 +1,251 @@
+{
+  "artifact_format_version": 1,
+  "created_utc": "2026-10-14T06:20:11+00:00",
+  "dataset": {
+    "key": "california",
+    "title": "California Housing (1990 census, block-group level)",
+    "target": "price_usd",
+    "target_description": "Median house value of a census block group, in US dollars (1990 values)",
+    "currency": "USD",
+    "is_demo": false,
+    "notes": "Rows are census block groups, not individual houses. Targets are capped near $500,000.",
+    "report": {
+      "n_rows_raw": 20640,
+      "n_rows_used": 20640,
+      "n_missing_target_removed": 0,
+      "n_nonpositive_target_removed": 0,
+      "n_duplicate_rows_removed": 0,
+      "missing_values_per_feature": {
+        "MedInc": 0,
+        "HouseAge": 0,
+        "AveRooms": 0,
+        "AveBedrms": 0,
+        "Population": 0,
+        "AveOccup": 0,
+        "Latitude": 0,
+        "Longitude": 0
+      },
+      "outliers_per_feature": {
+        "MedInc": 140,
+        "HouseAge": 0,
+        "AveRooms": 180,
+        "AveBedrms": 724,
+        "Population": 421,
+        "AveOccup": 132,
+        "Latitude": 0,
+        "Longitude": 0
+      },
+      "target_min": 14999.000000000002,
+      "target_median": 179700.0,
+      "target_max": 500000.99999999994,
+      "share_at_target_max": 0.04675387596899225,
+      "extra": {}
+    }
+  },
+  "features": [
+    {
+      "name": "MedInc",
+      "label": "Median income (in $10,000s)",
+      "help": "Median household income of the block group, in tens of thousands of USD.",
+      "integer": false,
+      "min_allowed": 0.0,
+      "max_allowed": null,
+      "train_min": 0.4999,
+      "train_max": 15.0001,
+      "train_median": 3.5458
+    },
+    {
+      "name": "HouseAge",
+      "label": "Median house age (years)",
+      "help": "Median age of houses in the block group.",
+      "integer": false,
+      "min_allowed": 0.0,
+      "max_allowed": null,
+      "train_min": 1.0,
+      "train_max": 52.0,
+      "train_median": 29.0
+    },
+    {
+      "name": "AveRooms",
+      "label": "Average rooms per household",
+      "help": "Average number of rooms per household.",
+      "integer": false,
+      "min_allowed": 0.0,
+      "max_allowed": null,
+      "train_min": 0.8888888888888888,
+      "train_max": 141.9090909090909,
+      "train_median": 5.235873651414888
+    },
+    {
+      "name": "AveBedrms",
+      "label": "Average bedrooms per household",
+      "help": "Average number of bedrooms per household.",
+      "integer": false,
+      "min_allowed": 0.0,
+      "max_allowed": null,
+      "train_min": 0.3333333333333333,
+      "train_max": 25.636363636363637,
+      "train_median": 1.049285568483364
+    },
+    {
+      "name": "Population",
+      "label": "Block-group population",
+      "help": "Number of residents in the block group.",
+      "integer": false,
+      "min_allowed": 0.0,
+      "max_allowed": null,
+      "train_min": 3.0,
+      "train_max": 35682.0,
+      "train_median": 1167.0
+    },
+    {
+      "name": "AveOccup",
+      "label": "Average occupants per household",
+      "help": "Average household size.",
+      "integer": false,
+      "min_allowed": 0.0,
+      "max_allowed": null,
+      "train_min": 0.6923076923076923,
+      "train_max": 1243.3333333333333,
+      "train_median": 2.8172397135276888
+    },
+    {
+      "name": "Latitude",
+      "label": "Latitude",
+      "help": "Block-group latitude (California is roughly 32.5-42.0).",
+      "integer": false,
+      "min_allowed": -90.0,
+      "max_allowed": 90.0,
+      "train_min": 32.55,
+      "train_max": 41.95,
+      "train_median": 34.26
+    },
+    {
+      "name": "Longitude",
+      "label": "Longitude",
+      "help": "Block-group longitude (California is roughly -124.4 to -114.3).",
+      "integer": false,
+      "min_allowed": -180.0,
+      "max_allowed": 180.0,
+      "train_min": -124.35,
+      "train_max": -114.31,
+      "train_median": -118.51
+    }
+  ],
+  "split": {
+    "test_size": 0.2,
+    "seed": 42,
+    "cv_folds": 5,
+    "n_train": 16512,
+    "n_test": 4128
+  },
+  "selection": {
+    "criterion": "lowest mean 5-fold CV RMSE on the training set",
+    "selected_model": "Hist Gradient Boosting"
+  },
+  "models": {
+    "Mean baseline (reference)": {
+      "cv": {
+        "rmse_mean": 115617.18526507851,
+        "rmse_std": 1216.2799647627946,
+        "mae_mean": 91391.47454512728,
+        "r2_mean": -0.00021537376071170122
+      },
+      "test": {
+        "mae": 90606.85490007148,
+        "rmse": 114485.6354309979,
+        "r2": -0.00021908714592466794,
+        "n": 4128
+      }
+    },
+    "Linear Regression": {
+      "cv": {
+        "rmse_mean": 72050.95145054943,
+        "rmse_std": 1389.4615874099018,
+        "mae_mean": 52906.073568516375,
+        "r2_mean": 0.611456745810643
+      },
+      "test": {
+        "mae": 53320.013049565656,
+        "rmse": 74558.13830127764,
+        "r2": 0.5757877060324507,
+        "n": 4128
+      }
+    },
+    "Random Forest": {
+      "cv": {
+        "rmse_mean": 51735.130840132086,
+        "rmse_std": 1197.7035311101247,
+        "mae_mean": 33934.96163678215,
+        "r2_mean": 0.7996915620577244
+      },
+      "test": {
+        "mae": 33245.406607322955,
+        "rmse": 51328.65365464816,
+        "r2": 0.798945922246689,
+        "n": 4128
+      }
+    },
+    "Hist Gradient Boosting": {
+      "cv": {
+        "rmse_mean": 47360.65314327428,
+        "rmse_std": 1201.189792191247,
+        "mae_mean": 31650.36045648828,
+        "r2_mean": 0.8321623282584631
+      },
+      "test": {
+        "mae": 31105.521289073844,
+        "rmse": 46539.919537971495,
+        "r2": 0.8347108310026643,
+        "n": 4128
+      }
+    }
+  },
+  "linear_analysis": {
+    "note": "Coefficients of the linear model on STANDARDISED features: change in price (USD) per +1 standard deviation of the feature, others held fixed.",
+    "coefficients": {
+      "MedInc": 85438.30309268553,
+      "HouseAge": 12254.623807840777,
+      "AveRooms": -29441.013447329988,
+      "AveBedrms": 33925.94905944848,
+      "Population": -230.7723145830064,
+      "AveOccup": -4082.910308508761,
+      "Latitude": -89692.88766386652,
+      "Longitude": -86984.17752417187
+    }
+  },
+  "importance_analysis": {
+    "model": "Hist Gradient Boosting",
+    "note": "Permutation importance on the test set: increase in RMSE (USD) when a feature's values are shuffled.",
+    "rmse_increase_mean": {
+      "MedInc": 50271.20813701591,
+      "HouseAge": 5412.360698478081,
+      "AveRooms": 4968.422559675631,
+      "AveBedrms": 897.6051717912109,
+      "Population": 1187.524414589879,
+      "AveOccup": 18531.62070940333,
+      "Latitude": 64598.359738109015,
+      "Longitude": 58148.81002121414
+    },
+    "rmse_increase_std": {
+      "MedInc": 939.3589033553504,
+      "HouseAge": 359.95621184833067,
+      "AveRooms": 199.4293509165136,
+      "AveBedrms": 142.65038270088465,
+      "Population": 78.9914256595735,
+      "AveOccup": 412.9003296466106,
+      "Latitude": 987.004036305202,
+      "Longitude": 713.8349503107139
+    }
+  },
+  "environment": {
+    "python": "3.13.1",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6"
+  },
+  "model_file": "house_model.joblib",
+  "predictions_file": "test_predictions.csv",
+  "model_sha256": "4b451a80f144e16b9a371725e15cc0242f596f0495021b7bc1bc4ccaa459621c",
+  "model_size_bytes": 169221
+}
